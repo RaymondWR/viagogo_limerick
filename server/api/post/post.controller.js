@@ -64,6 +64,17 @@
         });
     };
 
+exports.search = function(req, res) {
+  var key= req.params.keywords;
+  console.log(key);
+  Post.find({title: { $regex: key }},null,null,function (err, post) {
+     if(err) { return handleError(res, err); }
+     if(!post) { return res.send(404); }
+     return res.json(200, post);
+   });
+};
+
+
     exports.update_comment_upvotes = function(req, res) {
         Post.findById(req.params.post_id, function (err, post) {
             var comment_index = _.findIndex(post.comments ,
@@ -73,6 +84,7 @@
            if (comment_index != -1) {
               post.comments[comment_index].upvotes = req.body.upvotes
               post.save(function (err) {
+                console.log(post.comments)
                   if(err) { return handleError(res, err); }
                   return res.json(200,post.comments[comment_index])
                 });

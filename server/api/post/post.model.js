@@ -9,7 +9,7 @@
 
     var PostSchema = new Schema({
       title: { type: String, required: true },
-      link: { type: String, optional: true },
+      content: { type: String, optional: true },
       username: { type: String, required: true },
       comments: [CommentSchema],
       upvotes: Number

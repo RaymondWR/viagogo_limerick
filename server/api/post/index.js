@@ -11,5 +11,6 @@
     router.post('/:id/upvotes', controller.update_upvotes);
     router.post('/:id/comments', controller.add_comment);
     router.post('/:post_id/comments/:comment_id/upvotes', controller.update_comment_upvotes);
+    router.get('/:keywords', controller.search);
 
     module.exports = router;
