@@ -22,7 +22,7 @@ exports.showOne = function(req, res) {
 	var userId = req.params.id;
 
   Event.findById(userId, function (err, event) {
-    if (err) return res.json({'message':'no event in db'});
+    if (err) return res.json(null);
     if (!event) return res.send(401);
     res.json(event);
   });
